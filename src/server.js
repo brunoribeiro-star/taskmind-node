@@ -8,6 +8,7 @@ import { db } from './firebaseConfig.js';
 import taskRoutes from './routes/taskRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import { getDoc, doc, collection, query, where, getDocs } from 'firebase/firestore';
+import { isAuthenticated } from './middlewares/auth.js'; // Importe o middleware de autenticação
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -29,11 +30,12 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
-app.get('/add-task', (req, res) => {
+// Aplicando o middleware de autenticação às rotas das tasks
+app.get('/add-task', isAuthenticated, (req, res) => {
     res.render('addTask');
 });
 
-app.get('/view-task/:id', async (req, res) => {
+app.get('/view-task/:id', isAuthenticated, async (req, res) => {
     const taskDoc = doc(db, 'tasks', req.params.id);
     const task = await getDoc(taskDoc);
     if (task.exists()) {
@@ -43,7 +45,7 @@ app.get('/view-task/:id', async (req, res) => {
     }
 });
 
-app.get('/edit-task/:id', async (req, res) => {
+app.get('/edit-task/:id', isAuthenticated, async (req, res) => {
     const taskDoc = doc(db, 'tasks', req.params.id);
     const task = await getDoc(taskDoc);
     if (task.exists()) {
@@ -54,7 +56,7 @@ app.get('/edit-task/:id', async (req, res) => {
 });
 
 // Rota para exibir tarefas concluídas
-app.get('/completed-tasks', async (req, res) => {
+app.get('/completed-tasks', isAuthenticated, async (req, res) => {
     try {
         const userId = req.session.userId;
         const q = query(collection(db, 'tasks'), where('completed', '==', true), where('userId', '==', userId));
@@ -81,11 +83,14 @@ app.get('/logout', (req, res) => {
     });
 });
 
-app.use('/api/tasks', taskRoutes);
+app.use('/api/tasks', isAuthenticated, taskRoutes); // Aplicar middleware para todas as rotas de tasks
 app.use('/auth', authRoutes);
+
+// Rota de erro 404
+app.use((req, res) => {
+    res.status(404).render('404');
+});
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
-
-export { app };
