@@ -1,31 +1,51 @@
 <!-- src/views/tasks.ejs -->
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Task List</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
+
 <body>
-    <h1>Task List</h1>
-    <a href="/add-task">Add New Task</a>
-    <a href="/completed-tasks">View Completed Tasks</a>
-    <a href="/api/tasks/quote">Get a Motivational Quote</a> <!-- Novo botão para obter citação -->
-    <a href="/auth/logout">Logout</a>
-    <form action="/api/tasks/filter" method="post">
-        <label for="urgency">Filter by Urgency:</label>
-        <select id="urgency" name="urgency">
-            <option value="all">All</option>
-            <option value="long-term">Long-term</option>
-            <option value="medium-term">Medium-term</option>
-            <option value="urgent">Urgent</option>
-        </select>
-        <button type="submit">Filter</button>
-    </form>
-    <ul>
-        <% tasks.forEach(task => { %>
-            <li>
-                <a href="/api/tasks/view/<%= task.id %>"><%= task.title %></a>
-            </li>
-        <% }); %>
-    </ul>
+    <div class="centralizar">
+        <h1>Que bom ter você de volta, meu amigo(a)!</h1>
+        <form action="/api/tasks/filter" method="post">
+            <label for="urgency">Filtre aqui a urgência de sua tarefa:</label>
+            <select id="urgency" name="urgency">
+                <option value="all">Todas</option>
+                <option value="long-term">Longo-Prazo</option>
+                <option value="medium-term">Médio-Prazo</option>
+                <option value="urgent">Urgente</option>
+            </select>
+            <button type="submit">Filtrar</button>
+        </form>
+        <ul>
+            <% tasks.forEach(task=> { %>
+                <li>
+                    <span class="urgency-dot <%= task.urgency %>"></span>
+                    <a href="/api/tasks/view/<%= task.id %>">
+                        <%= task.title %>
+                    </a>
+                </li>
+                <% }); %>
+        </ul>
+        <div class="ajuste-task">
+            <button>
+                <a href="/add-task">Add New Task</a>
+            </button>
+            <button>
+                <a href="/completed-tasks">View Completed Tasks</a>
+            </button>
+            <button>
+                <a href="/api/tasks/quote">Get a Motivational Quote</a> <!-- Novo botão para obter citação -->
+            </button>
+            
+            <button>
+                <a href="/auth/logout">Logout</a>
+            </button>
+        </div>
+    </div>
 </body>
+
 </html>

@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>TaskMind - Login</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
+
 <body>
-    <h1>Login</h1>
-    <form action="/auth/login" method="post">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <button type="submit">Login</button>
-    </form>
+    <div class="centralizar">
+        <h1>Que ótimo ter você de volta!</h1>
+        <p>Fique a vontade para fazer seu login.</p>
+        <form action="/auth/login" method="post">
+            <label for="email">Seu Email:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <label for="password">Sua senha:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <button type="submit">Login</button>
+        </form>
+    </div>
 </body>
+
 </html>
