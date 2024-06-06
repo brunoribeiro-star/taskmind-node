@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Completed Tasks</title>
+    <title>Tarefas Concluídas</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
+
 <body>
-    <h1>Completed Tasks</h1>
-    <ul>
-        <% tasks.forEach(task => { %>
-            <li>
-                <h2><%= task.title %></h2>
-                <p><strong>Description:</strong> <%= task.description %></p>
-                <p><strong>Deadline:</strong> <%= task.deadline %></p>
-                <p><strong>Urgency:</strong> <%= task.urgency %></p>
-            </li>
-        <% }); %>
-    </ul>
-    <a href="/api/tasks">Back to Tasks</a>
+    <div class="centralizar">
+        <h1>Aqui estão as tarefas que você já completou!</h1>
+        <ul class="concluidas">
+            <% tasks.forEach(task=> { %>
+                <li>
+                    <h2>
+                        <%= task.title %>
+                    </h2>
+                    <p><strong>Descrição:</strong>
+                        <%= task.description %>
+                    </p>
+                    <p><strong>Prazo:</strong>
+                        <%= task.deadline %>
+                    </p>
+                    <p><strong>Urgência:</strong>
+                        <%= task.urgency %>
+                    </p>
+                </li>
+                <% }); %>
+        </ul>
+        <button>
+            <a href="/api/tasks">Volte para sua lista de tarefas.</a>
+        </button>
+    </div>
 </body>
+
 </html>

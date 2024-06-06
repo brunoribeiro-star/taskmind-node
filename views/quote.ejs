@@ -1,12 +1,23 @@
 <!-- src/views/quote.ejs -->
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Motivational Quote</title>
+    <title>Frase Motivacional</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
+
 <body>
-    <h1>Motivational Quote</h1>
-    <p><strong><%= quote.content %></strong> - <%= quote.author %></p>
-    <a href="/api/tasks">Back to Tasks</a>
+    <div class="centralizar">
+        <h1>Uma frase de motivação para você realizar suas tarefas :)</h1>
+        <p><strong>
+                <%= quote.content %>
+            </strong> - <%= quote.author %>
+        </p>
+        <button>
+            <a href="/api/tasks">Voltar para as tarefas.</a>
+        </button>
+    </div>
 </body>
+
 </html>

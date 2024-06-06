@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Add Task</title>
+    <title>Adicionar Tarefa</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
+
 <body>
-    <h1>Add New Task</h1>
-    <form action="/api/tasks/add" method="post">
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" required>
-        <br>
-        <label for="description">Description:</label>
-        <input type="text" id="description" name="description" required>
-        <br>
-        <label for="deadline">Deadline:</label>
-        <input type="date" id="deadline" name="deadline" required>
-        <br>
-        <label for="urgency">Urgency:</label>
-        <select id="urgency" name="urgency" required>
-            <option value="long-term">Long-term</option>
-            <option value="medium-term">Medium-term</option>
-            <option value="urgent">Urgent</option>
-        </select>
-        <br>
-        <button type="submit">Add Task</button>
-    </form>
+    <div class="centralizar">
+        <h1>Adicione uma nova tarefa</h1>
+        <form action="/api/tasks/add" method="post">
+            <label for="title">Título:</label>
+            <input type="text" id="title" name="title" required>
+            <br>
+            <label for="description">Descrição:</label>
+            <input type="text" id="description" name="description" required>
+            <br>
+            <label for="deadline">Prazo da tarefa:</label>
+            <input type="date" id="deadline" name="deadline" required>
+            <br>
+            <label for="urgency">Urgência:</label>
+            <select id="urgency" name="urgency" required>
+                <option value="long-term">Longo-Prazo</option>
+                <option value="medium-term">Médio-Prazo</option>
+                <option value="urgent">Urgente</option>
+            </select>
+            <br>
+            <button type="submit">Adicionar Tarefa</button>
+        </form>
+        <button>
+            <a href="/api/tasks">Voltar</a>
+        </button>
+    </div>
 </body>
+
 </html>

@@ -169,6 +169,24 @@ ul {
     z-index: 1;
 }
 
+.concluidas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+}
+
+.concluidas li {
+    background: none;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #a703af;
+    flex: 0 1 calc(33.333% - 20px);
+    box-sizing: border-box;
+}
+
 ul li {
     background: rgba(0, 0, 0, 0.5);
     margin: 10px 0;
@@ -204,4 +222,9 @@ ul li a:hover {
 
 .urgent {
     background-color: red;
+}
+
+.voltar-btn {
+    padding-top: 20px;
+    z-index: 1;
 }

@@ -1,20 +1,39 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>View Task</title>
+    <title>Gerencie a sua tarefa!</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
+
 <body>
-    <h1>View Task</h1>
-    <h2><%= task.title %></h2>
-    <p><strong>Description:</strong> <%= task.description %></p>
-    <p><strong>Deadline:</strong> <%= task.deadline %></p>
-    <p><strong>Urgency:</strong> <%= task.urgency %></p>
-    <form action="/api/tasks/complete/<%= id %>" method="post" style="display:inline;">
-        <button type="submit">Complete</button>
-    </form>
-    <form action="/api/tasks/delete/<%= id %>" method="post" style="display:inline;">
-        <button type="submit">Delete</button>
-    </form>
-    <a href="/edit-task/<%= id %>"><button>Edit</button></a> <!-- Ajuste aqui para redirecionar corretamente -->
+    <div class="centralizar">
+        <h1>Escolha o que deseja fazer com a sua tarefa!</h1>
+        <h2>
+            <%= task.title %>
+        </h2>
+        <p><strong>Descrição:</strong>
+            <%= task.description %>
+        </p>
+        <p><strong>Prazo:</strong>
+            <%= task.deadline %>
+        </p>
+        <p><strong>Urgência:</strong>
+            <%= task.urgency %>
+        </p>
+        <form action="/api/tasks/complete/<%= id %>" method="post" style="display:inline;">
+            <button type="submit">Marcar como concluída</button>
+        </form>
+        <form action="/api/tasks/delete/<%= id %>" method="post" style="display:inline;">
+            <button type="submit">Deletar</button>
+        </form>
+        <a href="/edit-task/<%= id %>"><button>Editar</button></a> <!-- Ajuste aqui para redirecionar corretamente -->
+        <div class="voltar-btn">
+            <button>
+                <a href="/api/tasks">Voltar para as Tarefas.</a>
+            </button>
+        </div>
+    </div>
 </body>
+
 </html>

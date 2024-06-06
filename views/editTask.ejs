@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Edit Task</title>
+    <title>Editar Tarefas</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
+
 <body>
-    <h1>Edit Task</h1>
-    <form action="/api/tasks/edit/<%= id %>" method="post">
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" value="<%= task.title %>" required>
-        <br>
-        <label for="description">Description:</label>
-        <input type="text" id="description" name="description" value="<%= task.description %>" required>
-        <br>
-        <label for="deadline">Deadline:</label>
-        <input type="date" id="deadline" name="deadline" value="<%= task.deadline %>" required>
-        <br>
-        <label for="urgency">Urgency:</label>
-        <select id="urgency" name="urgency" required>
-            <option value="long-term" <%= task.urgency === 'long-term' ? 'selected' : '' %>>Long-term</option>
-            <option value="medium-term" <%= task.urgency === 'medium-term' ? 'selected' : '' %>>Medium-term</option>
-            <option value="urgent" <%= task.urgency === 'urgent' ? 'selected' : '' %>>Urgent</option>
-        </select>
-        <br>
-        <button type="submit">Update Task</button>
-    </form>
+    <div class="centralizar">
+        <h1>Edite aqui a sua tarefa!</h1>
+        <form action="/api/tasks/edit/<%= id %>" method="post">
+            <label for="title">Título:</label>
+            <input type="text" id="title" name="title" value="<%= task.title %>" required>
+            <br>
+            <label for="description">Descrição:</label>
+            <input type="text" id="description" name="description" value="<%= task.description %>" required>
+            <br>
+            <label for="deadline">Prazo:</label>
+            <input type="date" id="deadline" name="deadline" value="<%= task.deadline %>" required>
+            <br>
+            <label for="urgency">Urgência:</label>
+            <select id="urgency" name="urgency" required>
+                <option value="long-term" <%=task.urgency==='long-term' ? 'selected' : '' %>>Long-term</option>
+                <option value="medium-term" <%=task.urgency==='medium-term' ? 'selected' : '' %>>Medium-term</option>
+                <option value="urgent" <%=task.urgency==='urgent' ? 'selected' : '' %>>Urgent</option>
+            </select>
+            <br>
+            <button type="submit">Atualizar Tarefa</button>
+        </form>
+    </div>
 </body>
+
 </html>
