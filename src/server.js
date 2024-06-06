@@ -8,7 +8,7 @@ import { db } from './firebaseConfig.js';
 import taskRoutes from './routes/taskRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import { getDoc, doc, collection, query, where, getDocs } from 'firebase/firestore';
-import { isAuthenticated } from './middlewares/auth.js'; // Importe o middleware de autenticação
+import { isAuthenticated } from './middlewares/auth.js'; // middleware de autenticação
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
-// Aplicando o middleware de autenticação às rotas das tasks
+// autenticacao das rotas
 app.get('/add-task', isAuthenticated, (req, res) => {
     res.render('addTask');
 });
@@ -55,7 +55,7 @@ app.get('/edit-task/:id', isAuthenticated, async (req, res) => {
     }
 });
 
-// Rota para exibir tarefas concluídas
+// tarefas concluidas
 app.get('/completed-tasks', isAuthenticated, async (req, res) => {
     try {
         const userId = req.session.userId;
@@ -72,7 +72,7 @@ app.get('/completed-tasks', isAuthenticated, async (req, res) => {
     }
 });
 
-// Rota de logout
+// fazer o logout
 app.get('/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) {
@@ -83,10 +83,10 @@ app.get('/logout', (req, res) => {
     });
 });
 
-app.use('/api/tasks', isAuthenticated, taskRoutes); // Aplicar middleware para todas as rotas de tasks
+app.use('/api/tasks', isAuthenticated, taskRoutes);
 app.use('/auth', authRoutes);
 
-// Rota de erro 404
+// erro
 app.use((req, res) => {
     res.status(404).render('404');
 });

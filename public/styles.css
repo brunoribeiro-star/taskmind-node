@@ -1,10 +1,7 @@
-/* styles.css */
-
-/* Definindo o background para todas as telas */
 body {
     background-image: linear-gradient(to right, black, #221133);
-    color: #dfdfdf; /* Definindo a cor do texto */
-    font-family: Poppins; /* Definindo a fonte padrão */
+    color: #dfdfdf;
+    font-family: Poppins;
     margin: 0;
     padding: 0;
     display: flex;
@@ -32,7 +29,6 @@ h1::after {
     background-image: linear-gradient(to right, rgba(167, 3, 175, 0), rgba(167, 3, 175, 1), rgba(167, 3, 175, 0));
 }
 
-/* Estilizando títulos */
 h1, h2, h3, h4, h5, h6 {
     color: #a703af;
     z-index: 1;
@@ -93,7 +89,6 @@ h2, h3, h4, h5, h6, p {
     z-index: 1;
 }
 
-/* Estilizando botões */
 button {
     background-color: #a703af;
     color: #dfdfdf;
@@ -112,7 +107,6 @@ button:hover {
     background-color: #8c0292;
 }
 
-/* Estilizando links */
 a {
     color: #dfdfdf;
     text-decoration: none;
@@ -126,7 +120,6 @@ a:hover {
     color: #ffffff;
 }
 
-/* Estilizando formulários */
 form {
     padding: 20px;
     border-radius: 10px;

@@ -1,8 +1,9 @@
 import axios from 'axios';
 import translate from 'translate';
 
-translate.engine = 'google'; // Usando o Google Translate
-translate.key = 'YOUR_GOOGLE_TRANSLATE_API_KEY'; // Adicione sua chave API do Google Translate aqui
+//google tradutor
+translate.engine = 'google';
+translate.key = 'YOUR_GOOGLE_TRANSLATE_API_KEY';
 
 export const getQuote = async (req, res) => {
     const url = 'https://api.quotable.io/random';
@@ -11,7 +12,7 @@ export const getQuote = async (req, res) => {
         const response = await axios.get(url);
         const quote = response.data;
         
-        // Traduzir a citação para português
+        // traduz a frase p portugues
         const translatedContent = await translate(quote.content, 'pt');
         const translatedAuthor = await translate(quote.author, 'pt');
 

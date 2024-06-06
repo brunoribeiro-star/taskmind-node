@@ -4,19 +4,19 @@ import { app } from '../firebaseConfig.js';
 
 const router = express.Router();
 
-// Rota GET para exibir o formulário de login
+// rota do form de login
 router.get('/login', (req, res) => {
-    res.render('login'); // Certifique-se de que você tem uma view 'login.ejs' em sua pasta de views
+    res.render('login');
 });
 
-// Rota POST para processar as informações de login
+// rota p processar dados de login
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     const auth = getAuth(app);
 
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        req.session.userId = userCredential.user.uid; // Armazenar o ID do usuário na sessão
+        req.session.userId = userCredential.user.uid;
         res.redirect('/api/tasks');
     } catch (error) {
         console.error("Erro de login: ", error);
@@ -24,19 +24,19 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// Rota GET para exibir o formulário de registro
+// rota p formulario de cadastro
 router.get('/register', (req, res) => {
-    res.render('register'); // Certifique-se de que você tem uma view 'register.ejs' em sua pasta de views
+    res.render('register');
 });
 
-// Rota POST para processar o registro
+// rota p processar o cadastro
 router.post('/register', async (req, res) => {
     const { email, password } = req.body;
     const auth = getAuth(app);
 
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        req.session.userId = userCredential.user.uid; // Armazenar o ID do usuário na sessão
+        req.session.userId = userCredential.user.uid;
         res.redirect('/api/tasks');
     } catch (error) {
         console.error("Erro ao registrar: ", error);
@@ -44,7 +44,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// Rota GET para logout
+// rota do logout
 router.get('/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) {

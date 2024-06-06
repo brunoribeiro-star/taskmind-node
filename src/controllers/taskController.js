@@ -3,7 +3,7 @@ import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, where, g
 
 export async function getAllTasks(req, res) {
     try {
-        const userId = req.session.userId; // Obter o ID do usuário da sessão
+        const userId = req.session.userId; // pega id do user da sessao
         const q = query(collection(db, 'tasks'), where('userId', '==', userId), where('completed', '==', false));
         const querySnapshot = await getDocs(q);
         const tasks = querySnapshot.docs.map(doc => ({
@@ -19,7 +19,7 @@ export async function getAllTasks(req, res) {
 
 export async function addTask(req, res) {
     const { title, description, deadline, urgency } = req.body;
-    const userId = req.session.userId; // Obter o ID do usuário da sessão
+    const userId = req.session.userId;
     try {
         const docRef = await addDoc(collection(db, 'tasks'), {
             title,
@@ -27,20 +27,20 @@ export async function addTask(req, res) {
             deadline,
             urgency,
             completed: false,
-            userId // Adicionar o ID do usuário à tarefa
+            userId // adiciona id usuario tarefa
         });
         console.log("Document written with ID: ", docRef.id);
-        res.redirect('/api/tasks'); // Redirecionar para a URL de listagem de tarefas
+        res.redirect('/api/tasks');
     } catch (error) {
         console.error("Erro ao adicionar tarefa:", error);
         res.status(500).send("Erro ao adicionar tarefa.");
     }
 }
 
-// Atualizar a função filterTasks para filtrar por userId
+// atualiza a funcao p filtrar as tarefas
 export async function filterTasks(req, res) {
     const { urgency } = req.body;
-    const userId = req.session.userId; // Obter o ID do usuário da sessão
+    const userId = req.session.userId;
     try {
         let tasks;
         if (urgency === 'all') {
@@ -116,7 +116,7 @@ export async function completeTask(req, res) {
 
 export async function getCompletedTasks(req, res) {
     try {
-        const userId = req.session.userId; // Obter o ID do usuário da sessão
+        const userId = req.session.userId;
         const q = query(collection(db, 'tasks'), where('completed', '==', true), where('userId', '==', userId));
         const querySnapshot = await getDocs(q);
         const tasks = querySnapshot.docs.map(doc => ({
