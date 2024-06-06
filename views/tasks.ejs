@@ -1,0 +1,31 @@
+<!-- src/views/tasks.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task List</title>
+</head>
+<body>
+    <h1>Task List</h1>
+    <a href="/add-task">Add New Task</a>
+    <a href="/completed-tasks">View Completed Tasks</a>
+    <a href="/api/tasks/quote">Get a Motivational Quote</a> <!-- Novo botão para obter citação -->
+    <a href="/auth/logout">Logout</a>
+    <form action="/api/tasks/filter" method="post">
+        <label for="urgency">Filter by Urgency:</label>
+        <select id="urgency" name="urgency">
+            <option value="all">All</option>
+            <option value="long-term">Long-term</option>
+            <option value="medium-term">Medium-term</option>
+            <option value="urgent">Urgent</option>
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+    <ul>
+        <% tasks.forEach(task => { %>
+            <li>
+                <a href="/api/tasks/view/<%= task.id %>"><%= task.title %></a>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>
